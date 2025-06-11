@@ -1,6 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'camera_screen.dart';
 import 'gallery_classification_screen.dart';
+// Import các màn hình YOLO mới
+import 'gallery_classification_screen_yolo.dart';
+import 'camera_screen_yolo.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -32,7 +36,6 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // Tiêu đề
                 Text(
                   'Ứng dụng Phân Loại Rác Thải',
                   style: TextStyle(
@@ -52,8 +55,6 @@ class HomeScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 48),
-
-                // Container cho các nút chức năng
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                   decoration: BoxDecoration(
@@ -71,7 +72,9 @@ class HomeScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      // Nút Phân loại ảnh có sẵn
+                      // --- MODEL PHÂN LOẠI RÁC CŨ ---
+                      const Text("Mô hình phân loại rác", textAlign: TextAlign.center, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 10),
                       ElevatedButton.icon(
                         onPressed: () {
                           Navigator.push(
@@ -86,16 +89,12 @@ class HomeScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 18),
                           textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                          backgroundColor: Colors.green[600], // Background color
-                          foregroundColor: Colors.white, // Text color
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          backgroundColor: Colors.green[600],
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         ),
                       ),
                       const SizedBox(height: 20),
-
-                      // Nút Chụp ảnh mới (Thời gian thực)
                       ElevatedButton.icon(
                         onPressed: () {
                           Navigator.push(
@@ -110,11 +109,56 @@ class HomeScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 18),
                           textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-                          backgroundColor: Colors.green[600], // Background color
-                          foregroundColor: Colors.white, // Text color
-                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                          backgroundColor: Colors.green[600],
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      const Divider(),
+                      const SizedBox(height: 10),
+                      // --- MODEL YOLOV8 MỚI ---
+                      const Text("Mô hình YOLOv8", textAlign: TextAlign.center, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 10),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          // SỬA Ở ĐÂY: Điều hướng đến màn hình YOLO mới
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const GalleryClassificationScreenYolo(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.photo_library, size: 30),
+                        label: const Text('Phân loại ảnh có sẵn'),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                          backgroundColor: Colors.blue[600], // Đổi màu để phân biệt
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          // SỬA Ở ĐÂY: Điều hướng đến màn hình YOLO mới
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const CameraScreenYolo(),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.camera_alt, size: 30),
+                        label: const Text('Phân loại thời gian thực'),
+                        style: ElevatedButton.styleFrom(
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          textStyle: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                          backgroundColor: Colors.blue[600], // Đổi màu để phân biệt
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         ),
                       ),
                     ],
@@ -127,4 +171,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-} 
+}
